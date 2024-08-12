@@ -10,7 +10,7 @@ import PrivateRoute from "./components/PrivateRoute";
 
 
 function App() {
-
+    
   const [isLoggedIn, setIsLoggedIn] = useState(false);
  
 
@@ -21,11 +21,11 @@ function App() {
       <Routes>
 
         <Route path="/" element= {<Home isLoggedIn={isLoggedIn}/>} />
-        <Route path="/login" element = {<Login  setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/login" element = {<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/signup" element={<Signup  setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/dashboard" element = {
           <PrivateRoute isLoggedIn={isLoggedIn}>
-              <Dashboard/>
+             <Home isLoggedIn={isLoggedIn}/>
           </PrivateRoute>
        
         } />

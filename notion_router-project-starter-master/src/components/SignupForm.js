@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import {toast} from "react-hot-toast"
 import { useNavigate } from 'react-router-dom';
+import axios from "axios"
 
 
 const SignupForm = ({setIsLoggedIn}) => {
@@ -30,12 +31,18 @@ const SignupForm = ({setIsLoggedIn}) => {
 
     }
 
-    function submitHandler(event) {
+    async function submitHandler(event) {
         event.preventDefault();
         if(formData.password !== formData.confirmPassword) {
             toast.error("Passwords do not match");
             return ;
         }
+        const response = await axios.post("http://localhost:4002/api/v1/admin/signup", {
+            name  : formData.firstName,
+            role: "admin", 
+            email: formData.email,
+            password: formData.password
+        });
 
         setIsLoggedIn(true);
         toast.success("Account Created");
@@ -62,22 +69,22 @@ const SignupForm = ({setIsLoggedIn}) => {
         <div
         className='flex bg-richblack-800 p-1 gap-x-1 my-6 rounded-full max-w-max'>
 
-            <button
+            {/* <button
             className={`${accountType === "student" 
             ?
               "bg-richblack-900 text-richblack-5"
             :"bg-transparent text-richblack-200"} py-2 px-5 rounded-full transition-all duration-200`}
             onClick={()=> setAccountType("student")}>
                 Student
-            </button>
+            </button> */}
 
             <button
-            className={`${accountType === "instructor" 
+            className={`${accountType === "admin" 
             ?
               "bg-richblack-900 text-richblack-5"
             :"bg-transparent text-richblack-200"} py-2 px-5 rounded-full transition-all duration-200`}
-            onClick={() => setAccountType("instructor")}>
-                Instructor
+            onClick={() => setAccountType("admin")}>
+                Admin
             </button>
         </div>
 

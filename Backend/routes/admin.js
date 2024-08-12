@@ -13,8 +13,6 @@ const { deleteQuestion } = require('../controllers/deleteQuestion');
 const {login,signup}=require("../controllers/Auth");
 const {auth,isStudent,isAdmin}=require("../middlewares/auth");
 
-
-
 router.post('/createQuestion', createQuestion);
 router.get('/getQuestions', getQuestions);
 router.put('/updateQuestion/:id', updateQuestion);

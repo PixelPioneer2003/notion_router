@@ -59,7 +59,9 @@ exports.signup =async (req,res)=>{
 exports.login= async (req,res) =>{
     try{
         //fectch data
-            const {email,password}=req.body;
+            const {email , password}=req.body;
+           
+
             // validation
             if(!email || !password) {
                 return res.status(400).json(
@@ -116,7 +118,7 @@ exports.login= async (req,res) =>{
                 {
                     success :false,
                     data : "user unable to register",
-                    message : error.message
+                    message : error.message + " " + process.env.JWT_SECRET 
                 }
             )
         }
