@@ -62,13 +62,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));  
 
 // Importing routes
-const adminRoutes = require("./routes/admin");
+const adminRoutes = require("./routes/admin"); 
 const clientRoutes = require("./routes/client");
-
+  
 // Using routes
 app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/client', clientRoutes);
-
+  
 
 app.listen(port, () => {
     console.log("Server started at port no " + port);

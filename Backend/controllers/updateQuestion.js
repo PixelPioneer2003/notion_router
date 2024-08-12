@@ -16,7 +16,7 @@ const updateQuestion = async (req, res) => {
         if (!updatedQuestion) {
             return res.status(404).json({ message: "Question not found." });
         }
-
+        console.log("Updated");
         res.status(200).json(updatedQuestion);
     } catch (error) {
         res.status(500).json({ message: error.message });
